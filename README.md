@@ -4,7 +4,7 @@
 ## Usage
 
 ### get-trip
-Save the current try to a gpx file:
+Save the current trip to a gpx file:
 
 ```bash
 sailaway-cli get-trip output.gpx
