@@ -3,6 +3,14 @@
 
 ## Usage
 
+### login
+You need to login before using other commands; the login command will ask for username and password
+
+
+```bash
+sailaway-cli login
+```
+
 ### get-trip
 Save the current trip to a gpx file:
 
