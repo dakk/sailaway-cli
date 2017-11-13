@@ -1,4 +1,5 @@
 import api
+import gpsd
 import sys
 
 def usage ():
@@ -27,6 +28,17 @@ def main ():
             password = sys.argv[3]
         else:
             password = input ('Password: ')
+
+        sw = api.Sailaway ()
+        sw.login (email, password)
+
+    # list-boats
+    elif argvn > 1 and sys.argv[1] == 'list-boats':
+        sw = api.Sailaway ()
+        sw.login ()
+        for boat in sw.getUserBoats ()['userboats']:
+            print (boat['ubtnr'], '\t', boat['ubtname'], '\t', boat['prdtitle'])
+
         
     # gps-serve
     elif argvn > 2 and sys.argv[1] == 'gps-serve':
@@ -35,6 +47,13 @@ def main ():
 
         if argvn > 3:
             port = int (sys.argv[3])
+
+        sw = api.Sailaway ()
+        sw.login ()
+
+        gdaemon = gpsd.GPSD ()
+        gdaemon.serve (sw, boat, port)
+
 
 if __name__ == "__main__":
     main ()
